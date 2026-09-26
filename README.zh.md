@@ -38,31 +38,41 @@ AngusKit 是一套私有化、自托管的软件工程套件：一层统一身�
 
 ## 免费获取社区版
 
-整套套件的社区版免费、自托管、无使用期限。评估单个产品最低 2 核/4 GB；跑**全套 7 进程**（GM + 六个产品 + 数据库）最低需要 **8 核/16 GB**（推荐 16 核/32 GB）。
+约 **1 GB**。全套：AngusGM + 六个产品。 至少 **8 核 / 16 GB** 内存、**200 GB** 磁盘。需 Docker Engine 与 Compose v2。
+
+本页路径与官网文档一致：Docker Compose、安装向导、**访问方式 2**（捆绑 Caddy）、HTTP `:80`（无证书）。
+
+1. 先把域名解析到本机（本机试用可写入 `/etc/hosts`）。向导里的 Public DNS name 填**后缀**（如 `example.com`），不要填 `gm.example.com`。
 
 ```bash
-curl -LO https://repo.anguskit.com/raw/raw-public/AngusKit/kit/AngusKit-Community-1.0.0.zip
-unzip AngusKit-Community-1.0.0.zip
-cd AngusKit-1.0.0/docker
-cp env.example .env
-docker compose --profile mysql up -d
+127.0.0.1 gm.example.com ai.example.com git.example.com repo.example.com tester.example.com insight.example.com security.example.com
 ```
 
-安装完成后的默认端口：
+放行宿主机 **80**。需要 Git SSH 再放行 **2222**；跑 Tester Agent 再放行 **7100**。应用端口由反代回源——不要用 `localhost:8801`。本机已有 Nginx/Caddy/IIS 占用 80 时先停掉。macOS + Docker Desktop 不要给 `./install.sh` 加 `sudo`。
 
-| 应用 | 端口 |
-|---|---|
-| AngusGM（登录入口） | 8801 |
-| AngusAI | 8802 |
-| AngusGit（HTTP）/ SSH | 8803 / 2222 |
-| AngusRepo | 8804 |
-| AngusTester | 8807 |
-| AngusInsight | 8808 |
-| AngusSecurity | 8809 |
+2. 下载、解压，在包根目录跑向导：
 
-只需要一两个产品而不是整套？从上表对应仓库下载该产品自己的 SKU 安装包——打包流水线相同，资源占用更小。
+```bash
+curl --fail --location --progress-bar -o AngusKit-Community-1.0.0.zip \
+  https://repo.anguskit.com/raw/raw-public/AngusKit/kit/AngusKit-Community-1.0.0.zip
+unzip AngusKit-Community-1.0.0.zip
+cd AngusKit-1.0.0
+./install.sh
+```
 
-完整安装指南（主机 ZIP、Kubernetes/Helm、TLS、升级、备份）：**[docs.anguskit.com/kit](https://www.anguskit.com/zh/docs/kit/latest/zh/manual/02-install-deploy)**
+按提示：Install mode `1`（Compose）→ Access **`2`**（捆绑反代，不要回车）→ Proxy `1`（Caddy）→ TLS **`4`**（HTTP `:80`，无证书）→ Database `1`（Compose 内 MySQL 8）→ Public DNS name = `example.com` → 设置管理员密码（默认用户 `admin`）。等到终端出现 `Install finished.`。
+
+3. 确认健康后再打开控制台：
+
+```bash
+./bin/angusctl.sh doctor
+```
+
+输出包含 `doctor: OK`。打开 `http://gm.example.com/`（把后缀换成你的域名）登录。门户里可以看到六个产品。
+
+只需要一两个产品？到对应产品仓库下载该产品自己的 SKU 安装包——向导相同，占用更小。
+
+第一次跑通：**[kit 快速开始](https://www.anguskit.com/zh/docs/kit/get-started/quickstart)** · 完整安装（主机 ZIP、Helm 预览、TLS、离线）：**[安装文档](https://www.anguskit.com/zh/docs/kit/latest/zh/manual/04-install-deploy/install)**
 
 ## 社区版 vs 团队版/企业版 vs SaaS
 
@@ -74,7 +84,7 @@ docker compose --profile mysql up -d
 | 高级安全、SSO、审计 | 不含 | 包含 | 按套餐 |
 | 支持 | 社区支持 | SLA 保障 | SLA 保障 |
 
-各产品社区版源码使用 GPL-3.0 协议，随社区版安装包一同分发。团队版与企业版为专有软件，受 **XCan Business License, Version 1.0** 约束，仅随付费订阅提供——其源码不在本仓库公开。
+各产品社区版源码使用 GPL-3.0 协议，随社区版安装包一同分发。团队版与企业版为专有软件，受 **[XCan Business License, Version 1.0](https://www.anguskit.com/licenses/XCBL-1.0)**（XCBL-1.0）约束，仅随付费订阅提供——其源码不在本仓库公开。
 
 完整定价、功能对照与 SaaS 可用范围：**[anguskit.com/pricing](https://www.anguskit.com/zh/pricing)**
 
@@ -88,4 +98,4 @@ docker compose --profile mysql up -d
 
 - 本仓库文档内容：见 [LICENSE](LICENSE)（GPL-3.0，与其描述的社区版源码保持一致）。
 - AngusKit 社区版产品源码：GPL-3.0，随每个社区版安装包分发。
-- AngusKit 团队版/企业版：专有软件，XCan Business License v1.0，仅随付费订阅提供。
+- AngusKit 团队版/企业版：专有软件，[XCan Business License, Version 1.0](LICENSE-XCBL-1.0)（XCBL-1.0）— 详见 https://www.anguskit.com/licenses/XCBL-1.0，仅随付费订阅提供。

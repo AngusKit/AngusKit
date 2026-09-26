@@ -38,31 +38,41 @@ Each product also has its own repository (linked above) with a product-specific 
 
 ## Get the Community Edition (free)
 
-The Community Edition of the full suite is free, self-hosted, and unlimited in time. Minimum footprint for evaluating a single product is 2 cores / 4 GB; running the **full 7-process suite** (GM + all six products + database) needs **8 cores / 16 GB** minimum (16 cores / 32 GB recommended).
+About **1 GB**. Full suite: AngusGM + six products. At least **8 cores / 16 GB** RAM and **200 GB** disk. Docker Engine + Compose v2.
+
+This first-run path matches the official docs: Docker Compose, the install wizard, **access mode 2** (bundled Caddy), HTTP `:80` (no certificate).
+
+1. Resolve names to this machine (or add to `/etc/hosts` for a local trial). Public DNS name in the wizard is the **suffix** (e.g. `example.com`), not `gm.example.com`.
 
 ```bash
-curl -LO https://repo.anguskit.com/raw/raw-public/AngusKit/kit/AngusKit-Community-1.0.0.zip
-unzip AngusKit-Community-1.0.0.zip
-cd AngusKit-1.0.0/docker
-cp env.example .env
-docker compose --profile mysql up -d
+127.0.0.1 gm.example.com ai.example.com git.example.com repo.example.com tester.example.com insight.example.com security.example.com
 ```
 
-Default ports after install:
+Open host **80**. Open **2222** only for Git SSH, **7100** only for a Tester agent. App ports stay behind the proxy — do not use `localhost:8801`. Stop Nginx/Caddy/IIS if they already bind 80. On macOS + Docker Desktop, do not run `./install.sh` with `sudo`.
 
-| App | Port |
-|---|---|
-| AngusGM (sign-in) | 8801 |
-| AngusAI | 8802 |
-| AngusGit (HTTP) / SSH | 8803 / 2222 |
-| AngusRepo | 8804 |
-| AngusTester | 8807 |
-| AngusInsight | 8808 |
-| AngusSecurity | 8809 |
+2. Download, unzip, and run the wizard from the package root:
 
-Only need one or two products instead of the full suite? Download that product's own SKU zip from its repository above — same packaging pipeline, smaller footprint.
+```bash
+curl --fail --location --progress-bar -o AngusKit-Community-1.0.0.zip \
+  https://repo.anguskit.com/raw/raw-public/AngusKit/kit/AngusKit-Community-1.0.0.zip
+unzip AngusKit-Community-1.0.0.zip
+cd AngusKit-1.0.0
+./install.sh
+```
 
-Full installation guide (host ZIP, Kubernetes/Helm, TLS, upgrades, backup): **[docs.anguskit.com/kit](https://www.anguskit.com/en/docs/kit/latest/en/manual/02-install-deploy)**
+Answer: Install mode `1` (Compose) → Access **`2`** (bundled reverse proxy — do not press Enter) → Proxy `1` (Caddy) → TLS **`4`** (HTTP `:80`, no certificate) → Database `1` (MySQL 8 in Compose) → Public DNS name = `example.com` → set admin password (default user `admin`). Wait for `Install finished.`
+
+3. Confirm health, then open the console:
+
+```bash
+./bin/angusctl.sh doctor
+```
+
+Look for `doctor: OK`. Open `http://gm.example.com/` (use your DNS suffix) and sign in. The portal lists all six products.
+
+Only need one or two products? Download that product’s own SKU zip from its repository — same wizard, smaller footprint.
+
+First-run guide: **[kit quickstart](https://www.anguskit.com/en/docs/kit/get-started/quickstart)** · Full install (host ZIP, Helm preview, TLS, offline): **[install docs](https://www.anguskit.com/en/docs/kit/latest/en/manual/04-install-deploy/install)**
 
 ## Community vs. Team / Enterprise vs. SaaS
 
@@ -74,7 +84,7 @@ Full installation guide (host ZIP, Kubernetes/Helm, TLS, upgrades, backup): **[d
 | Advanced security, SSO, audit | Not included | Included | Per plan |
 | Support | Community | SLA-backed | SLA-backed |
 
-Community Edition source (per product) is licensed under GPL-3.0 and distributed with each Community installation package. Team and Enterprise editions are proprietary, governed by the **XCan Business License, Version 1.0**, and are only distributed under a paid subscription — their source is not published in this repository.
+Community Edition source (per product) is licensed under GPL-3.0 and distributed with each Community installation package. Team and Enterprise editions are proprietary, governed by the **[XCan Business License, Version 1.0](https://www.anguskit.com/licenses/XCBL-1.0)** (XCBL-1.0), and are only distributed under a paid subscription — their source is not published in this repository.
 
 Full pricing, feature comparison, and SaaS availability by product: **[anguskit.com/pricing](https://www.anguskit.com/en/pricing)**
 
@@ -88,4 +98,4 @@ Full pricing, feature comparison, and SaaS availability by product: **[anguskit.
 
 - This repository's documentation content: see [LICENSE](LICENSE) (GPL-3.0, matching the Community Edition source it describes).
 - AngusKit Community Edition product source: GPL-3.0, distributed with each Community installation package.
-- AngusKit Team / Enterprise Edition: proprietary, XCan Business License v1.0, distributed under a paid subscription only.
+- AngusKit Team / Enterprise Edition: proprietary, [XCan Business License, Version 1.0](LICENSE-XCBL-1.0) (XCBL-1.0) — see https://www.anguskit.com/licenses/XCBL-1.0. Distributed under a paid subscription only.
