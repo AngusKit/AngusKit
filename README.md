@@ -30,7 +30,7 @@ It is **not** a ninth product beside the other eight. It is the distribution uni
 | **AngusAI** | AI agent development — build, host, and publish agents | [AngusKit/AngusAI](https://github.com/AngusKit/AngusAI) |
 | **AngusGit** | AI-native code collaboration — repos, PRs, reviews, CICD | [AngusKit/AngusGit](https://github.com/AngusKit/AngusGit) |
 | **AngusWiki** | Git-native knowledge base — fleeting notes, a journal, documents, and a blog land in a Git repository | [AngusKit/AngusWiki](https://github.com/AngusKit/AngusWiki) |
-| **AngusRepo** | Universal artifact management — 10 protocols, one repo | [AngusKit/AngusRepo](https://github.com/AngusKit/AngusRepo) |
+| **AngusRepo** | Universal artifact management — 28 protocols, one repo | [AngusKit/AngusRepo](https://github.com/AngusKit/AngusRepo) |
 | **AngusTester** | AI-native software testing — one YAML engine for everything | [AngusKit/AngusTester](https://github.com/AngusKit/AngusTester) |
 | **AngusSecurity** | Application security & governance — SAST, secrets, SCA, gates | [AngusKit/AngusSecurity](https://github.com/AngusKit/AngusSecurity) |
 | **AngusInsight** | Private product analytics — usage insight without leaving your infra | [AngusKit/AngusInsight](https://github.com/AngusKit/AngusInsight) |
