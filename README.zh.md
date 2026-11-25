@@ -30,7 +30,7 @@ AI 原生软件工程平台。
 | **AngusAI** | AI 智能体开发——搭建、托管、发布智能体 | [AngusKit/AngusAI](https://github.com/AngusKit/AngusAI) |
 | **AngusGit** | AI 原生代码协作——仓库、合并请求、评审、CICD | [AngusKit/AngusGit](https://github.com/AngusKit/AngusGit) |
 | **AngusWiki** | Git 原生知识库——闪念、日记、文档和博客落在 Git 仓库 | [AngusKit/AngusWiki](https://github.com/AngusKit/AngusWiki) |
-| **AngusRepo** | 通用制品管理——10 种协议统一托管 | [AngusKit/AngusRepo](https://github.com/AngusKit/AngusRepo) |
+| **AngusRepo** | 通用制品管理——28 种协议统一托管 | [AngusKit/AngusRepo](https://github.com/AngusKit/AngusRepo) |
 | **AngusTester** | AI 原生软件测试——一种 YAML 引擎测遍所有场景 | [AngusKit/AngusTester](https://github.com/AngusKit/AngusTester) |
 | **AngusSecurity** | 应用安全与治理——SAST、密钥、SCA、门禁 | [AngusKit/AngusSecurity](https://github.com/AngusKit/AngusSecurity) |
 | **AngusInsight** | 私有化产品分析——不出域的使用洞察 | [AngusKit/AngusInsight](https://github.com/AngusKit/AngusInsight) |
