@@ -15,20 +15,21 @@
 
 AI 原生软件工程平台。
 
-> **本仓库仅承载文档内容。** AngusKit 的产品源码通过私有化安装包分发，不在本 GitHub 仓库公开。本仓库此前版本曾包含应用源码；本次更新后，源码分发已统一收拢到 AngusKit 的打包发布流水线（见下文「免费获取社区版」），以保证七个应用之间的版本、许可证与版次构建口径一致。本仓库现聚焦于产品信息、快速上手指引，以及指向完整文档站的链接。
+> **本仓库仅承载文档内容。** AngusKit 的产品源码通过私有化安装包分发，不在本 GitHub 仓库公开。本仓库此前版本曾包含应用源码；本次更新后，源码分发已统一收拢到 AngusKit 的打包发布流水线（见下文「免费获取社区版」），以保证八个应用之间的版本、许可证与版次构建口径一致。本仓库现聚焦于产品信息、快速上手指引，以及指向完整文档站的链接。
 
 ## AngusKit 是什么
 
-AngusKit 是一套私有化、自托管的软件工程套件：一层统一身份与治理底座（AngusGM），加上六个针对性构建的产品——AI 智能体开发、代码协作、制品管理、测试、安全与产品分析。你不需要自己拼装一堆开源工具再手工打通登录、权限与审计链路，AngusKit 把它们打成一套口径一致、可直接部署的发行物，全程留在你自己的基础设施内。
+一个 AI 原生平台，覆盖软件研发全生命周期：从智能体开发、知识库、代码协作、制品交付，到测试、安全与用户洞察，统一知识图谱和身份认证。支持私有化部署，数据与调用路径留在你的边界内。
 
-它**不是**在原有六个产品之外硬塞的第七个产品，而是把 AngusGM 与六个业务产品任意组合打进同一份安装包的**分发单位**。
+它**不是**排在这八个产品旁边的第九个产品，而是把 AngusGM 与七个业务应用任意组合打进同一份安装包的**分发单位**。
 
-## 六个产品
+## 七个产品
 
 | 产品 | 定位 | 仓库 |
 |---|---|---|
 | **AngusAI** | AI 智能体开发——搭建、托管、发布智能体 | [AngusKit/AngusAI](https://github.com/AngusKit/AngusAI) |
 | **AngusGit** | AI 原生代码协作——仓库、合并请求、评审、CICD | [AngusKit/AngusGit](https://github.com/AngusKit/AngusGit) |
+| **AngusWiki** | Git 原生知识库——闪念、日记、文档和博客落在 Git 仓库 | [AngusKit/AngusWiki](https://github.com/AngusKit/AngusWiki) |
 | **AngusRepo** | 通用制品管理——10 种协议统一托管 | [AngusKit/AngusRepo](https://github.com/AngusKit/AngusRepo) |
 | **AngusTester** | AI 原生软件测试——一种 YAML 引擎测遍所有场景 | [AngusKit/AngusTester](https://github.com/AngusKit/AngusTester) |
 | **AngusSecurity** | 应用安全与治理——SAST、密钥、SCA、门禁 | [AngusKit/AngusSecurity](https://github.com/AngusKit/AngusSecurity) |
@@ -38,14 +39,14 @@ AngusKit 是一套私有化、自托管的软件工程套件：一层统一身�
 
 ## 免费获取社区版
 
-约 **1 GB**。全套：AngusGM + 六个产品。 至少 **8 核 / 16 GB** 内存、**200 GB** 磁盘。需 Docker Engine 与 Compose v2。
+约 **1 GB**。全套：AngusGM + 七个产品。 至少 **8 核 / 16 GB** 内存、**200 GB** 磁盘。需 Docker Engine 与 Compose v2。
 
 本页路径与官网文档一致：Docker Compose、安装向导、**访问方式 2**（捆绑 Caddy）、HTTP `:80`（无证书）。
 
 1. 先把域名解析到本机（本机试用可写入 `/etc/hosts`）。向导里的 Public DNS name 填**后缀**（如 `example.com`），不要填 `gm.example.com`。
 
 ```bash
-127.0.0.1 gm.example.com ai.example.com git.example.com repo.example.com tester.example.com insight.example.com security.example.com
+127.0.0.1 gm.example.com ai.example.com git.example.com wiki.example.com repo.example.com tester.example.com insight.example.com security.example.com
 ```
 
 放行宿主机 **80**。需要 Git SSH 再放行 **2222**；跑 Tester Agent 再放行 **7100**。应用端口由反代回源——不要用 `localhost:8801`。本机已有 Nginx/Caddy/IIS 占用 80 时先停掉。macOS + Docker Desktop 不要给 `./install.sh` 加 `sudo`。
@@ -68,7 +69,7 @@ cd AngusKit-1.0.0
 ./bin/angusctl.sh doctor
 ```
 
-输出包含 `doctor: OK`。打开 `http://gm.example.com/`（把后缀换成你的域名）登录。门户里可以看到六个产品。
+输出包含 `doctor: OK`。打开 `http://gm.example.com/`（把后缀换成你的域名）登录。门户里可以看到七个产品。
 
 只需要一两个产品？到对应产品仓库下载该产品自己的 SKU 安装包——向导相同，占用更小。
 
@@ -84,7 +85,7 @@ cd AngusKit-1.0.0
 | 高级安全、SSO、审计 | 不含 | 包含 | 按套餐 |
 | 支持 | 社区支持 | SLA 保障 | SLA 保障 |
 
-各产品社区版源码使用 GPL-3.0 协议，随社区版安装包一同分发。团队版与企业版为专有软件，受 **[XCan Business License, Version 1.0](https://www.anguskit.com/licenses/XCBL-1.0)**（XCBL-1.0）约束，仅随付费订阅提供——其源码不在本仓库公开。
+各产品社区版源码使用 GPL-3.0 协议，随社区版安装包一同分发。团队版与企业版为专有软件，受 **[XCan Business License, Version 1.0](https://www.anguskit.com/zh/licenses/XCBL-1.0)**（XCBL-1.0）约束，仅随付费订阅提供——其源码不在本仓库公开。
 
 完整定价、功能对照与 SaaS 可用范围：**[anguskit.com/pricing](https://www.anguskit.com/zh/pricing)**
 
@@ -98,4 +99,4 @@ cd AngusKit-1.0.0
 
 - 本仓库文档内容：见 [LICENSE](LICENSE)（GPL-3.0，与其描述的社区版源码保持一致）。
 - AngusKit 社区版产品源码：GPL-3.0，随每个社区版安装包分发。
-- AngusKit 团队版/企业版：专有软件，[XCan Business License, Version 1.0](LICENSE-XCBL-1.0)（XCBL-1.0）— 详见 https://www.anguskit.com/licenses/XCBL-1.0，仅随付费订阅提供。
+- AngusKit 团队版/企业版：专有软件，[XCan Business License, Version 1.0](LICENSE-XCBL-1.0)（XCBL-1.0）— 详见 https://www.anguskit.com/zh/licenses/XCBL-1.0，仅随付费订阅提供。

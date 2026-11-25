@@ -15,20 +15,21 @@
 
 AI-Native Software Engineering Platform.
 
-> **This repository hosts documentation only.** AngusKit source code is distributed through private deployment packages, not through this GitHub repository. Earlier revisions of this repository contained application source; as of this update, distribution has moved to AngusKit's packaging pipeline (see [Get the Community Edition](#get-the-community-edition-free) below) to keep versioning, licensing, and edition builds consistent across all seven applications. This repository now focuses on product information, quickstart guides, and links to the full documentation site.
+> **This repository hosts documentation only.** AngusKit source code is distributed through private deployment packages, not through this GitHub repository. Earlier revisions of this repository contained application source; as of this update, distribution has moved to AngusKit's packaging pipeline (see [Get the Community Edition](#get-the-community-edition-free) below) to keep versioning, licensing, and edition builds consistent across all eight applications. This repository now focuses on product information, quickstart guides, and links to the full documentation site.
 
 ## What is AngusKit
 
-AngusKit is a private, self-hosted software engineering suite: one shared identity/governance layer (AngusGM) plus six purpose-built products — AI agent development, code collaboration, artifact management, testing, security, and product analytics. Instead of assembling separate open-source tools and stitching together auth, permissions, and audit trails yourself, AngusKit ships them as one consistent, deployable bundle that stays inside your own infrastructure.
+An AI-native platform for the full software development lifecycle: from agent development, the knowledge base, code collaboration, and artifact delivery to testing, security, and product analytics, with one knowledge graph and one identity. Private deployment is supported, and data and call paths stay inside your boundary.
 
-It is **not** an eighth product bolted onto the other six — it is the distribution unit that packages AngusGM with any combination of the six business applications into a single install.
+It is **not** a ninth product beside the other eight. It is the distribution unit that packages AngusGM with any combination of the seven business applications into a single install.
 
-## The six products
+## The seven products
 
 | Product | Focus | Repository |
 |---|---|---|
 | **AngusAI** | AI agent development — build, host, and publish agents | [AngusKit/AngusAI](https://github.com/AngusKit/AngusAI) |
 | **AngusGit** | AI-native code collaboration — repos, PRs, reviews, CICD | [AngusKit/AngusGit](https://github.com/AngusKit/AngusGit) |
+| **AngusWiki** | Git-native knowledge base — fleeting notes, a journal, documents, and a blog land in a Git repository | [AngusKit/AngusWiki](https://github.com/AngusKit/AngusWiki) |
 | **AngusRepo** | Universal artifact management — 10 protocols, one repo | [AngusKit/AngusRepo](https://github.com/AngusKit/AngusRepo) |
 | **AngusTester** | AI-native software testing — one YAML engine for everything | [AngusKit/AngusTester](https://github.com/AngusKit/AngusTester) |
 | **AngusSecurity** | Application security & governance — SAST, secrets, SCA, gates | [AngusKit/AngusSecurity](https://github.com/AngusKit/AngusSecurity) |
@@ -38,14 +39,14 @@ Each product also has its own repository (linked above) with a product-specific 
 
 ## Get the Community Edition (free)
 
-About **1 GB**. Full suite: AngusGM + six products. At least **8 cores / 16 GB** RAM and **200 GB** disk. Docker Engine + Compose v2.
+About **1 GB**. Full suite: AngusGM + seven products. At least **8 cores / 16 GB** RAM and **200 GB** disk. Docker Engine + Compose v2.
 
 This first-run path matches the official docs: Docker Compose, the install wizard, **access mode 2** (bundled Caddy), HTTP `:80` (no certificate).
 
 1. Resolve names to this machine (or add to `/etc/hosts` for a local trial). Public DNS name in the wizard is the **suffix** (e.g. `example.com`), not `gm.example.com`.
 
 ```bash
-127.0.0.1 gm.example.com ai.example.com git.example.com repo.example.com tester.example.com insight.example.com security.example.com
+127.0.0.1 gm.example.com ai.example.com git.example.com wiki.example.com repo.example.com tester.example.com insight.example.com security.example.com
 ```
 
 Open host **80**. Open **2222** only for Git SSH, **7100** only for a Tester agent. App ports stay behind the proxy — do not use `localhost:8801`. Stop Nginx/Caddy/IIS if they already bind 80. On macOS + Docker Desktop, do not run `./install.sh` with `sudo`.
@@ -68,7 +69,7 @@ Answer: Install mode `1` (Compose) → Access **`2`** (bundled reverse proxy —
 ./bin/angusctl.sh doctor
 ```
 
-Look for `doctor: OK`. Open `http://gm.example.com/` (use your DNS suffix) and sign in. The portal lists all six products.
+Look for `doctor: OK`. Open `http://gm.example.com/` (use your DNS suffix) and sign in. The portal lists all seven products.
 
 Only need one or two products? Download that product’s own SKU zip from its repository — same wizard, smaller footprint.
 
@@ -84,7 +85,7 @@ First-run guide: **[kit quickstart](https://www.anguskit.com/en/docs/kit/get-sta
 | Advanced security, SSO, audit | Not included | Included | Per plan |
 | Support | Community | SLA-backed | SLA-backed |
 
-Community Edition source (per product) is licensed under GPL-3.0 and distributed with each Community installation package. Team and Enterprise editions are proprietary, governed by the **[XCan Business License, Version 1.0](https://www.anguskit.com/licenses/XCBL-1.0)** (XCBL-1.0), and are only distributed under a paid subscription — their source is not published in this repository.
+Community Edition source (per product) is licensed under GPL-3.0 and distributed with each Community installation package. Team and Enterprise editions are proprietary, governed by the **[XCan Business License, Version 1.0](https://www.anguskit.com/zh/licenses/XCBL-1.0)** (XCBL-1.0), and are only distributed under a paid subscription — their source is not published in this repository.
 
 Full pricing, feature comparison, and SaaS availability by product: **[anguskit.com/pricing](https://www.anguskit.com/en/pricing)**
 
@@ -98,4 +99,4 @@ Full pricing, feature comparison, and SaaS availability by product: **[anguskit.
 
 - This repository's documentation content: see [LICENSE](LICENSE) (GPL-3.0, matching the Community Edition source it describes).
 - AngusKit Community Edition product source: GPL-3.0, distributed with each Community installation package.
-- AngusKit Team / Enterprise Edition: proprietary, [XCan Business License, Version 1.0](LICENSE-XCBL-1.0) (XCBL-1.0) — see https://www.anguskit.com/licenses/XCBL-1.0. Distributed under a paid subscription only.
+- AngusKit Team / Enterprise Edition: proprietary, [XCan Business License, Version 1.0](LICENSE-XCBL-1.0) (XCBL-1.0) — see https://www.anguskit.com/zh/licenses/XCBL-1.0. Distributed under a paid subscription only.
